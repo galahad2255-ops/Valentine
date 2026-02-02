@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Serious Question 😏</title>
+
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(45deg, #ff0080, #7928ca, #2afadf);
+    background-size: 400% 400%;
+    animation: bg 8s ease infinite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+  }
+
+  @keyframes bg {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .card {
+    background: rgba(0,0,0,0.75);
+    border-radius: 20px;
+    padding: 20px;
+    width: 90%;
+    max-width: 420px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    animation: pop 0.6s ease;
+  }
+
+  @keyframes pop {
+    0% { transform: scale(0.6); }
+    100% { transform: scale(1); }
+  }
+
+  h1 {
+    font-size: 1.8em;
+  }
+
+  img {
+    width: 100%;
+    border-radius: 15px;
+    margin: 15px 0;
+  }
+
+  p {
+    font-size: 1.1em;
+  }
+
+  button {
+    padding: 12px 22px;
+    font-size: 1em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+  }
+
+  #yes {
+    background: #00ffcc;
+    color: black;
+  }
+
+  #no {
+    background: #ff4444;
+    color: white;
+    position: absolute;
+  }
+</style>
+</head>
+
+<body onclick="startMusic()">
+
+<div class="card" id="card">
+  <h1 id="title"></h1>
+
+  <img src="https://i.imgflip.com/4t0m5.jpg" alt="meme">
+
+  <p>Before you answer…  
+  *Careless Whisper intensifies* 🎷😏</p>
+
+  <button id="yes" onclick="yesClick()">YES 😌💖</button>
+  <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">NO 🤡</button>
+</div>
+
+<!-- AUDIO -->
+<audio id="bgm" loop>
+  <source src="careless.mp3" type="audio/mpeg">
+</audio>
+
+<audio id="boom">
+  <source src="https://www.myinstants.com/media/sounds/vine-boom.mp3">
+</audio>
+
+<script>
+  const name = "Cookie"; // 👈 CHANGE THIS
+  document.getElementById("title").innerText =
+    `${name}, will you be my Valentine? 😏❤️`;
+
+  let started = false;
+
+  function startMusic() {
+    if (!started) {
+      document.getElementById("bgm").play();
+      started = true;
+    }
+  }
+
+  function moveNo() {
+    document.getElementById("boom").play();
+    const no = document.getElementById("no");
+    no.style.left = Math.random() * 80 + "vw";
+    no.style.top = Math.random() * 80 + "vh";
+  }
+
+  function yesClick() {
+    document.getElementById("boom").play();
+    document.body.innerHTML = `
+      <div style="
+        height:100vh;
+        background:linear-gradient(45deg,#ff0080,#00ffcc);
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        text-align:center;
+        color:white;
+        padding:20px;">
+        <div>
+          <h1>SHE SAID YES 😭🎷❤️</h1>
+          <img src="https://i.imgflip.com/1bij.jpg"
+               style="width:300px;max-width:100%;border-radius:15px;">
+          <p>Careless Whisper was worth it 😌  
+          Happy Valentine’s Day 💘</p>
+        </div>
+      </div>
+    `;
+  }
+</script>
+
+</body>
+    </html>
